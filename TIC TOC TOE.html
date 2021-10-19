@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        X O GAME
+    </title>
+    <style>
+        body {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        .headerDiv {
+            margin: auto;
+            width: fit-content;
+        }
+
+        #mainDiv2 {
+            margin: auto;
+            width: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="headerDiv">
+        <h1> TIC-TOC-TOE </h1>
+    </div> <br>
+    <div id="mainDiv2">
+        <table>
+            <tr>
+                <td><img src="free.png" id="11"></img></td>
+                <td><img src="free.png" id="12"></img></td>
+                <td><img src="free.png" id="13"></img></td>
+            </tr>
+            <tr>
+                <td><img src="free.png" id="21"></img></td>
+                <td><img src="free.png" id="22"></img></td>
+                <td><img src="free.png" id="23"></img></td>
+            </tr>
+            <tr>
+                <td><img src="free.png" id="31"></img></td>
+                <td><img src="free.png" id="32"></img></td>
+                <td><img src="free.png" id="33"></img></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+</body>
+<script>
+    let N11 = document.getElementById(`11`);
+    let N12 = document.getElementById(`12`);
+    let N13 = document.getElementById(`13`);
+    let N21 = document.getElementById(`21`);
+    let N22 = document.getElementById(`22`);
+    let N23 = document.getElementById(`23`);
+    let N31 = document.getElementById(`31`);
+    let N32 = document.getElementById(`32`);
+    let N33 = document.getElementById(`33`);
+    let player1 = true;
+    let hasWinner = false;
+    let isFinished=false;
+    let played = [[false, false, false]
+        , [false, false, false]
+        , [false, false, false]];
+    let XorO = [[11, 12, 13]
+        , [14, 15, 16]
+        , [18, 17, 19]];
+    function isPlayed(i, j) {
+        if (played[i][j] == true)
+            return true;
+        else
+            return false;
+    }
+    function winCheck(player1) {
+        for (let i = 0; i < 3; ++i) {
+            if (((XorO[i][0] == XorO[i][1]) && (XorO[i][1] == XorO[i][2])) || ((XorO[0][i] == XorO[1][i]) && (XorO[1][i] == XorO[2][i]))) {
+                player1 ? alert(`PLAYER1 WIN`) : alert(`PLAYER2 WIN`);
+                hasWinner = true;
+                isFinished=true;
+            }
+        }
+        if (((XorO[0][0] == XorO[1][1]) && (XorO[1][1] == XorO[2][2])) || ((XorO[0][2] == XorO[1][1]) && (XorO[1][1] == XorO[2][0]))) {
+            player1 ? alert(`PLAYER1 WIN`) : alert(`PLAYER2 WIN`);
+            hasWinner = true;
+            isFinished=true;
+        }
+    }
+    function finishCheck() {
+        for (let i = 0; i < 3; ++i) {
+            for (let j = 0; j < 3; ++j) {
+                if (!(1 == XorO[i][j] || 2 == XorO[i][j])) {
+                    return false;
+                }
+            }
+        }
+        if (!hasWinner) {
+            alert(`TIE`);
+            isFinished=true;
+        }
+    }
+    N11.addEventListener("click", () => {
+        if (!isPlayed(0, 0)&&!isFinished) {
+            played[0][0] = true;
+            N11.src = (player1) ? `O.png` : `X.png`;
+            XorO[0][0] = player1 ? 1 : 2;
+            winCheck(player1);
+            player1 = !player1;
+            finishCheck()
+        }
+    })
+    N12.addEventListener("click", () => {
+        if (!isPlayed(0, 1)&&!isFinished) {
+            played[0][1] = true;
+            N12.src = (player1) ? `O.png` : `X.png`;
+            XorO[0][1] = player1 ? 1 : 2;
+            winCheck(player1);
+            player1 = !player1;
+            finishCheck()
+        }
+    })
+    N13.addEventListener("click", () => {
+        if (!isPlayed(0, 2)&&!isFinished) {
+            played[0][2] = true;
+            N13.src = (player1) ? `O.png` : `X.png`;
+            XorO[0][2] = player1 ? 1 : 2;
+            winCheck(player1);
+            player1 = !player1;
+            finishCheck()
+        }
+    })
+    N21.addEventListener("click", () => {
+        if (!isPlayed(1, 0)&&!isFinished) {
+            played[1][0] = true;
+            N21.src = (player1) ? `O.png` : `X.png`;
+            XorO[1][0] = player1 ? 1 : 2;
+            winCheck(player1);
+            player1 = !player1;
+            finishCheck()
+        }
+    })
+    N22.addEventListener("click", () => {
+        if (!isPlayed(1, 1)&&!isFinished) {
+            played[1][1] = true;
+            N22.src = (player1) ? `O.png` : `X.png`;
+            XorO[1][1] = player1 ? 1 : 2;
+            winCheck(player1);
+            player1 = !player1;
+            finishCheck()
+        }
+    })
+    N23.addEventListener("click", () => {
+        if (!isPlayed(1, 2)&&!isFinished) {
+            played[1][2] = true;
+            N23.src = (player1) ? `O.png` : `X.png`;
+            XorO[1][2] = player1 ? 1 : 2;
+            winCheck(player1);
+            player1 = !player1;
+            finishCheck()
+        }
+    })
+    N31.addEventListener("click", () => {
+        if (!isPlayed(2, 0)&&!isFinished) {
+            played[2][0] = true;
+            N31.src = (player1) ? `O.png` : `X.png`;
+            XorO[2][0] = player1 ? 1 : 2;
+            winCheck(player1);
+            player1 = !player1;
+            finishCheck()
+        }
+    })
+    N32.addEventListener("click", () => {
+        if (!isPlayed(2, 1)&&!isFinished) {
+            played[2][1] = true;
+            N32.src = (player1) ? `O.png` : `X.png`;
+            XorO[2][1] = player1 ? 1 : 2;
+            winCheck(player1);
+            player1 = !player1;
+            finishCheck()
+        }
+    })
+    N33.addEventListener("click", () => {
+        if (!isPlayed(2, 2)&&!isFinished) {
+            played[2][2] = true;
+            N33.src = (player1) ? `O.png` : `X.png`;
+            XorO[2][2] = player1 ? 1 : 2;
+            winCheck(player1);
+            player1 = !player1;
+            finishCheck()
+        }
+    })
+</script>
+
+
+</html>
